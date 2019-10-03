@@ -52,6 +52,10 @@ export const createChannel = channel_name => {
         payload: newChannel
       });
     } catch (error) {
+      dispatch({
+        type: actionTypes.SET_ERRORS,
+        payload: error.response.data
+      });
       console.error(error.response.data);
     }
   };

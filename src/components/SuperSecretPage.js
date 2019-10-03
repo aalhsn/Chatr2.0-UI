@@ -12,6 +12,7 @@ class SuperSecretPage extends Component {
     interval: null,
     timeStamp: ""
   };
+
   componentWillUnmount = () => {
     clearInterval(this.state.interval);
     this.setState({ timeStamp: "" });
@@ -31,7 +32,10 @@ class SuperSecretPage extends Component {
         this.props.match.params.channelID,
         this.state.timeStamp
       );
-      // window.scrollBy(0, this.props.channel.length * 1000);
+      let divObj = document.getElementById("content");
+      if (divObj) {
+        divObj.scrollTop = divObj.scrollHeight;
+      }
     }, 1000);
     this.setState({ interval: interval });
   };
@@ -42,8 +46,8 @@ class SuperSecretPage extends Component {
     // if (prevProps.state.timeStamp !== this.state.timeStamp) {
     //   this.changeInterval();
     // }
-    if (prevProps.channel.length > this.props.channel.length)
-      window.scrollBy(0, this.props.channel.length * 1000);
+    // if (prevProps.channel.length > this.props.channel.length)
+    //   window.scrollBy(0, this.props.channel.length * 1000);
 
     if (
       prevProps.match.params.channelID !== this.props.match.params.channelID
@@ -77,6 +81,7 @@ class SuperSecretPage extends Component {
     return (
       <div
         className="container  text-left  "
+        href="msg"
         style={{
           backgroundImage: `url(${background})`
           // backgroundRepeat: " no-repeat"

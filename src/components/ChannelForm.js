@@ -19,6 +19,8 @@ class ChannelForm extends Component {
     this.setState({ [event.target.name]: event.target.value });
 
   render() {
+    const errors = this.props.errors;
+
     return (
       <div className="card col-6 mx-auto p-0 mt-5 jumbotron">
         <div className="card-body">
@@ -32,10 +34,13 @@ class ChannelForm extends Component {
               </div>
               <input
                 type="text"
-                className="form-control"
+                className={`form-control ${errors && "is-invalid"}`}
                 name="name"
                 onChange={this.onTextchange}
               />
+              {errors && errors.name && (
+                <div className="invalid-feedback">{errors.name[0]}</div>
+              )}
             </div>
 
             <div className="input-group mb-3">
@@ -63,12 +68,15 @@ class ChannelForm extends Component {
     );
   }
 }
+const mapStateToProps = state => ({
+  errors: state.errors
+});
 
 const mapDispatchToProps = dispatch => ({
   createChannel: channel_name => dispatch(createChannel(channel_name))
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(ChannelForm);

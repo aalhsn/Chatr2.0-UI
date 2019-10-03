@@ -32,15 +32,16 @@ class TextingArea extends Component {
         className=" bg-dark sticky-footer rounded-pill"
         style={{
           padding: "20px",
-          marginLeft: "15%",
+          marginRight: "15%",
 
           marginBottom: "2%",
           fontSize: "1.3em"
         }}
       >
         <form onSubmit={this.submitMsg}>
-          <div className="input-group ">
+          <div className="input-group p-3">
             <input
+              style={{ fontSize: "1.1em" }}
               type="text"
               name="message"
               value={this.state.message}
@@ -53,6 +54,7 @@ class TextingArea extends Component {
                 className="btn btn-primary rounded-pill ml-2"
                 type="submit"
                 value="Post"
+                style={{ fontSize: "1.1em" }}
               />
             </div>
           </div>
